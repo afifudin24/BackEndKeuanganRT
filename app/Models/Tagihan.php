@@ -9,4 +9,9 @@ class Tagihan extends Model
 {
     /** @use HasFactory<\Database\Factories\TagihanFactory> */
     use HasFactory;
+    protected $fillable = ['warga_id', 'jumlah', 'bulan', 'tahun', 'status'];
+
+    public function warga() {
+        return $this->belongsTo(Warga::class);
+    }
 }

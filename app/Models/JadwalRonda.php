@@ -9,4 +9,9 @@ class JadwalRonda extends Model
 {
     /** @use HasFactory<\Database\Factories\JadwalRondaFactory> */
     use HasFactory;
+    protected $fillable = ['warga_id', 'tanggal', 'shift'];
+
+    public function warga() {
+        return $this->belongsTo(Warga::class);
+    }
 }

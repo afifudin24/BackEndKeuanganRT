@@ -9,4 +9,6 @@ class Pemasukan extends Model
 {
     /** @use HasFactory<\Database\Factories\PemasukanFactory> */
     use HasFactory;
+
+    protected $fillable = ['sumber', 'jumlah', 'keterangan'];
 }

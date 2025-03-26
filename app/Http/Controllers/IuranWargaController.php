@@ -8,59 +8,41 @@ use App\Http\Requests\UpdateIuranWargaRequest;
 
 class IuranWargaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index() {
+        return response()->json(IuranWarga::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request) {
+        $data = $request->validate([
+            'warga_id' => 'required|exists:wargas,id',
+            'jumlah' => 'required|numeric',
+            'bulan' => 'required|string',
+            'tahun' => 'required|integer',
+            'status' => 'required|in:Belum Bayar,Sudah Bayar',
+        ]);
+        $iuran = IuranWarga::create($data);
+        return response()->json($iuran, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreIuranWargaRequest $request)
-    {
-        //
+    public function show($id) {
+        return response()->json(IuranWarga::findOrFail($id));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(IuranWarga $iuranWarga)
-    {
-        //
+    public function update(Request $request, $id) {
+        $iuran = IuranWarga::findOrFail($id);
+        $data = $request->validate([
+            'warga_id' => 'required|exists:wargas,id',
+            'jumlah' => 'required|numeric',
+            'bulan' => 'required|string',
+            'tahun' => 'required|integer',
+            'status' => 'required|in:Belum Bayar,Sudah Bayar',
+        ]);
+        $iuran->update($data);
+        return response()->json($iuran);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(IuranWarga $iuranWarga)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateIuranWargaRequest $request, IuranWarga $iuranWarga)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(IuranWarga $iuranWarga)
-    {
-        //
+    public function destroy($id) {
+        IuranWarga::destroy($id);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 }

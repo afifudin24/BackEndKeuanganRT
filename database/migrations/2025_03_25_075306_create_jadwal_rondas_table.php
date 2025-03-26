@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('jadwal_rondas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('warga_id');
+            $table->date('tanggal');
+            $table->string('shift'); // Misalnya: Malam, Subuh, dll.
             $table->timestamps();
+
         });
     }
 

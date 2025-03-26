@@ -8,59 +8,37 @@ use App\Http\Requests\UpdateJadwalRondaRequest;
 
 class JadwalRondaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index() {
+        return response()->json(JadwalRonda::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request) {
+        $data = $request->validate([
+            'warga_id' => 'required|exists:wargas,id',
+            'tanggal' => 'required|date',
+            'shift' => 'required|string',
+        ]);
+        $jadwal = JadwalRonda::create($data);
+        return response()->json($jadwal, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreJadwalRondaRequest $request)
-    {
-        //
+    public function show($id) {
+        return response()->json(JadwalRonda::findOrFail($id));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(JadwalRonda $jadwalRonda)
-    {
-        //
+    public function update(Request $request, $id) {
+        $jadwal = JadwalRonda::findOrFail($id);
+        $data = $request->validate([
+            'warga_id' => 'required|exists:wargas,id',
+            'tanggal' => 'required|date',
+            'shift' => 'required|string',
+        ]);
+        $jadwal->update($data);
+        return response()->json($jadwal);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(JadwalRonda $jadwalRonda)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateJadwalRondaRequest $request, JadwalRonda $jadwalRonda)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(JadwalRonda $jadwalRonda)
-    {
-        //
+    public function destroy($id) {
+        JadwalRonda::destroy($id);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 }
