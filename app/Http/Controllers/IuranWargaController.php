@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IuranWarga;
 use App\Http\Requests\StoreIuranWargaRequest;
 use App\Http\Requests\UpdateIuranWargaRequest;
+use Illuminate\Http\Request;
 
 class IuranWargaController extends Controller
 {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tagihan;
 use App\Http\Requests\StoreTagihanRequest;
 use App\Http\Requests\UpdateTagihanRequest;
+use Illuminate\Http\Request;
 
 class TagihanController extends Controller
 {
