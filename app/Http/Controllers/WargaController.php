@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Warga;
 use App\Http\Requests\StoreWargaRequest;
 use App\Http\Requests\UpdateWargaRequest;
+use Illuminate\Http\Request;
 
 class WargaController extends Controller
 {
