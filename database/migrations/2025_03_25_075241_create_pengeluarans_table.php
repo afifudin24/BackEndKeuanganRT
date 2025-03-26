@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
+            $table->string('keperluan');
+            $table->decimal('jumlah', 15, 2);
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

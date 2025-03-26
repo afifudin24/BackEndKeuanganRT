@@ -9,4 +9,6 @@ class Keuangan extends Model
 {
     /** @use HasFactory<\Database\Factories\KeuanganFactory> */
     use HasFactory;
+
+    protected $fillable = ['saldo'];
 }

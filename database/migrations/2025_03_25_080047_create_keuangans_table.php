@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('keuangans', function (Blueprint $table) {
             $table->id();
+            $table->decimal('saldo', 15, 2);
             $table->timestamps();
         });
     }

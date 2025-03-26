@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('tagihans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('warga_id');
+            $table->decimal('jumlah', 15, 2);
+            $table->string('bulan');
+            $table->year('tahun');
+            $table->enum('status', ['Belum Bayar', 'Sudah Bayar'])->default('Belum Bayar');
             $table->timestamps();
+
         });
     }
 

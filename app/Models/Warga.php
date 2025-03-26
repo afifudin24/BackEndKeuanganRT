@@ -9,4 +9,18 @@ class Warga extends Model
 {
     /** @use HasFactory<\Database\Factories\WargaFactory> */
     use HasFactory;
+
+    protected $fillable = ['nama', 'nik', 'alamat'];
+
+    public function iuran() {
+        return $this->hasMany(IuranWarga::class);
+    }
+
+    public function tagihan() {
+        return $this->hasMany(Tagihan::class);
+    }
+
+    public function jadwalRonda() {
+        return $this->hasMany(JadwalRonda::class);
+    }
 }

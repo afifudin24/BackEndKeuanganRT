@@ -8,59 +8,38 @@ use App\Http\Requests\UpdatePengumumanRequest;
 
 class PengumumanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index() {
+        return response()->json(Pengumuman::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request) {
+        $data = $request->validate([
+            'judul' => 'required|string',
+            'isi' => 'required|string',
+            'tanggal' => 'required|date',
+        ]);
+        $pengumuman = Pengumuman::create($data);
+        return response()->json($pengumuman, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePengumumanRequest $request)
-    {
-        //
+    public function show($id) {
+        return response()->json(Pengumuman::findOrFail($id));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pengumuman $pengumuman)
-    {
-        //
+    public function update(Request $request, $id) {
+        $pengumuman = Pengumuman::findOrFail($id);
+        $data = $request->validate([
+            'judul' => 'required|string',
+            'isi' => 'required|string',
+            'tanggal' => 'required|date',
+        ]);
+        $pengumuman->update($data);
+        return response()->json($pengumuman);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pengumuman $pengumuman)
-    {
-        //
+    public function destroy($id) {
+        Pengumuman::destroy($id);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePengumumanRequest $request, Pengumuman $pengumuman)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pengumuman $pengumuman)
-    {
-        //
-    }
 }
