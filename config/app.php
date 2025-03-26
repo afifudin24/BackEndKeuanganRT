@@ -84,6 +84,8 @@ return [
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
+
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -122,5 +124,9 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+//        'providers' => [
+//     Laravel\Sanctum\SanctumServiceProvider::class,
+// ],
 
 ];
