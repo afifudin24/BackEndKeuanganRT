@@ -11,13 +11,17 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('wargas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('nama');
-            $table->string('nik')->unique();
-            $table->string('alamat');
-            $table->timestamps();
-        });
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->string('nama');
+    $table->string('nik')->unique();
+    $table->string('alamat');
+    $table->date('tanggal_lahir');
+    $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+    $table->string('pekerjaan');
+    $table->string('agama');
+    $table->timestamps();
+});
     }
 
     /**
