@@ -17,8 +17,9 @@ use App\Http\Controllers\TagihanController;
 Route::post('/login', [AuthController::class, 'login']);
 
 // Group Admin
-Route::middleware(['auth:sanctum',  RoleMiddleware::class . ':admin'])->group(function () {
+Route::middleware(['auth:sanctum', RoleMiddleware::class . ':admin'])->group(function () {
     Route::get('/getuser', [UserController::class, 'index']);
+    Route::post('/postuser', [UserController::class, 'store']);
 
     // iuran warga
     Route::get('iuran-warga', [IuranWargaController::class, 'index']);
