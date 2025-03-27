@@ -10,7 +10,7 @@ class Warga extends Model
     /** @use HasFactory<\Database\Factories\WargaFactory> */
     use HasFactory;
 
-    protected $fillable = ['nama', 'nik', 'alamat'];
+    protected $fillable = ['nama', 'nik', 'alamat', 'alamat', 'tanggal_lahir', 'jenis_kelamin', 'pekerjaan', 'agama'];
 
     public function iuran()
     {

@@ -33,6 +33,10 @@ class WargaController extends Controller
             'nama' => 'required|string',
             'nik' => 'required|string|unique:wargas,nik,' . $id,
             'alamat' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'pekerjaan' => 'required|string',
+            'agama' => 'required|string',
+            'jenis_kelamin' => 'required|string',
         ]);
         $warga->update($data);
         return response()->json($warga);
@@ -40,6 +44,8 @@ class WargaController extends Controller
 
     public function destroy($id) {
         Warga::destroy($id);
-        return response()->json(['message' => 'Deleted successfully']);
+        // return message dan id nya
+        return response()->json(['message' => 'Data berhasil dihapus', 'id' => $id]);
+        // return response()->json(['message' => 'Deleted successfully']);
     }
 }
