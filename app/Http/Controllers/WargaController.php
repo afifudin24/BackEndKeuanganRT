@@ -42,6 +42,7 @@ class WargaController extends Controller
         return response()->json($warga);
     }
 
+
     public function destroy($id) {
         Warga::destroy($id);
         // return message dan id nya
